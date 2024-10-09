@@ -25,13 +25,13 @@
             const green = document.getElementById('green').value;
             const blue = document.getElementById('blue').value;
 
-            await fetch('/api/set_color?r=' + red + '&g=' + green + '&b=' + blue, {
+            await fetch('http://jcomuthpi.local:5000/api/set_color?r=' + red + '&g=' + green + '&b=' + blue, {
                 method: 'POST'
             });
         };
 
         document.getElementById('cycleButton').onclick = async () => {
-            await fetch('/api/cycle_colors', { method: 'POST' });
+            await fetch('http://jcomuthpi.local:5000/api/cycle_colors', { method: 'POST' });
         };
     </script>
 </body>
