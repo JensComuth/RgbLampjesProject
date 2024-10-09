@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>rgb-led-controller</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>RGB LED Controller</name>
+    <description>Raspberry Pi RGB LED Controller using WS2812</description>
+
+    <properties>
+        <java.version>11</java.version>
+        <spring-boot.version>2.6.11</spring-boot.version> <!-- Downgraded Spring Boot -->
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version> <!-- Removed hard-coded version -->
+        </dependency>
+        
+        <!-- Pi4J Dependencies for Raspberry Pi GPIO and WS2812 LED control -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-core</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- For testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version> <!-- Removed hard-coded version -->
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version> <!-- Added Spring Boot plugin version -->
+            </plugin>
+        </plugins>
+    </build>
+</project>
