@@ -12,8 +12,8 @@
     <description>Raspberry Pi RGB LED Controller using WS2812</description>
 
     <properties>
-        <java.version>11</java.version>
-        <spring-boot.version>2.6.11</spring-boot.version> <!-- Downgraded Spring Boot -->
+        <java.version>11</java.version>  <!-- Ensure compatibility with Java 11 -->
+        <spring-boot.version>3.0.0</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -21,9 +21,9 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version> <!-- Removed hard-coded version -->
+            <version>${spring-boot.version}</version>
         </dependency>
-        
+
         <!-- Pi4J Dependencies for Raspberry Pi GPIO and WS2812 LED control -->
         <dependency>
             <groupId>com.pi4j</groupId>
@@ -35,17 +35,28 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version> <!-- Removed hard-coded version -->
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Compiler plugin to ensure Java 11 compatibility -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Use a version compatible with Java 11 -->
+                <configuration>
+                    <source>11</source>  <!-- Set source compatibility to Java 11 -->
+                    <target>11</target>  <!-- Set target compatibility to Java 11 -->
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot Maven plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version> <!-- Added Spring Boot plugin version -->
             </plugin>
         </plugins>
     </build>
