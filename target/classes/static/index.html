@@ -19,20 +19,29 @@
 
     <script>
         const form = document.getElementById('colorForm');
-        form.onsubmit = async (event) => {
-            event.preventDefault();
-            const red = document.getElementById('red').value;
-            const green = document.getElementById('green').value;
-            const blue = document.getElementById('blue').value;
+form.onsubmit = async (event) => {
+    event.preventDefault();
+    const red = document.getElementById('red').value;
+    const green = document.getElementById('green').value;
+    const blue = document.getElementById('blue').value;
 
-            await fetch('/api/set_color?r=' + red + '&g=' + green + '&b=' + blue, {
-                method: 'POST'
-            });
-        };
+    const response = await fetch('/api/set_color?r=' + red + '&g=' + green + '&b=' + blue, {
+        method: 'POST'
+    });
 
-        document.getElementById('cycleButton').onclick = async () => {
-            await fetch('/api/cycle_colors', { method: 'POST' });
-        };
+    if (!response.ok) {
+        console.error("Error setting color: ", response.statusText);
+    }
+};
+
+document.getElementById('cycleButton').onclick = async () => {
+    const response = await fetch('/api/cycle_colors', { method: 'POST' });
+    
+    if (!response.ok) {
+        console.error("Error cycling colors: ", response.statusText);
+    }
+};
+
     </script>
 </body>
 </html>
